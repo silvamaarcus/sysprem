@@ -12,7 +12,6 @@ import Select from '@mui/material/Select';
 import Switch from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { type ClientSchema, clientSchema } from '@/schemas/clientSchema';
@@ -84,19 +83,15 @@ export default function ClientForm({
   onCancel,
   isLoading,
 }: ClientFormProps) {
+  'use no memo';
   const {
     control,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<ClientSchema>({
     resolver: zodResolver(clientSchema),
     defaultValues: { ...EMPTY_DEFAULTS, ...defaultValues },
   });
-
-  useEffect(() => {
-    reset({ ...EMPTY_DEFAULTS, ...defaultValues });
-  }, [defaultValues, reset]);
 
   return (
     <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -246,6 +241,7 @@ export default function ClientForm({
             control={control}
             render={({ field }) => (
               <TextField
+                {...field}
                 label="Limite de Crédito"
                 fullWidth
                 size="small"
@@ -271,6 +267,7 @@ export default function ClientForm({
             control={control}
             render={({ field }) => (
               <TextField
+                {...field}
                 label="Saldo Financeiro"
                 fullWidth
                 size="small"
@@ -378,20 +375,8 @@ export default function ClientForm({
           <Box
             sx={{ display: 'flex', gap: 2, justifyContent: 'flex-end', mt: 1 }}
           >
-            <Button
-              variant="outlined"
-              onClick={onCancel}
-              disabled={isLoading}
-              sx={{
-                borderColor: 'var(--color-border)',
-                color: 'text.secondary',
-                '&:hover': {
-                  borderColor: 'primary.main',
-                  color: 'primary.main',
-                },
-              }}
-            >
-              Cancelar
+            <Button variant="outlined" onClick={onCancel} disabled={isLoading}>
+              Voltar
             </Button>
             <Button
               type="submit"

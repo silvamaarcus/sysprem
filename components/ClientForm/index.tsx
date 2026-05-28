@@ -12,6 +12,7 @@ import Select from '@mui/material/Select';
 import Switch from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import { useRouter } from 'next/navigation';
 import { Controller, useForm } from 'react-hook-form';
 
 import { type ClientSchema, clientSchema } from '@/schemas/clientSchema';
@@ -80,10 +81,10 @@ const EMPTY_DEFAULTS: ClientSchema = {
 export default function ClientForm({
   defaultValues,
   onSubmit,
-  onCancel,
   isLoading,
 }: ClientFormProps) {
   'use no memo';
+  const router = useRouter();
   const {
     control,
     handleSubmit,
@@ -375,7 +376,11 @@ export default function ClientForm({
           <Box
             sx={{ display: 'flex', gap: 2, justifyContent: 'flex-end', mt: 1 }}
           >
-            <Button variant="outlined" onClick={onCancel} disabled={isLoading}>
+            <Button
+              variant="outlined"
+              onClick={() => router.push('/clients')}
+              disabled={isLoading}
+            >
               Voltar
             </Button>
             <Button

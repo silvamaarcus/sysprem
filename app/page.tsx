@@ -1,5 +1,4 @@
 import { Button } from '@mui/material';
-import colors from 'tailwindcss/colors';
 
 const Home = () => {
   return (
@@ -17,12 +16,12 @@ const Home = () => {
       <Button
         variant="contained"
         size="small"
-        color="error"
-        sx={{
-          backgroundColor: colors.blue[500],
-          color: colors.slate[50],
-          textTransform: 'none',
-        }}
+        // sx={{
+        //   backgroundColor: colors.blue[500],
+        //   color: colors.slate[50],
+        //   textTransform: 'none',
+        // }}
+        className="bg-primary text-slate-50"
       >
         Tailwind Colors
       </Button>

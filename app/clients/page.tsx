@@ -5,10 +5,10 @@ import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Drawer from '@mui/material/Drawer';
-import Modal from '@mui/material/Modal';
 import Snackbar from '@mui/material/Snackbar';
 import Typography from '@mui/material/Typography';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import ClientForm from '@/components/ClientForm';
@@ -16,13 +16,13 @@ import ClientTable from '@/components/ClientTable';
 import Header from '@/components/Header';
 import Loading from '@/components/Loading';
 import { type ClientSchema } from '@/schemas/clientSchema';
-import { createClient, getClients, updateClient } from '@/services/clients';
+import { getClients, updateClient } from '@/services/clients';
 import type { Client } from '@/types/client';
 
 export default function ClientsPage() {
+  const router = useRouter();
   const queryClient = useQueryClient();
 
-  const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [editClient, setEditClient] = useState<Client | null>(null);
   const [snackbar, setSnackbar] = useState<{
     open: boolean;
@@ -37,26 +37,6 @@ export default function ClientsPage() {
   } = useQuery({
     queryKey: ['clients'],
     queryFn: getClients,
-  });
-
-  const createMutation = useMutation({
-    mutationFn: createClient,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['clients'] });
-      setIsCreateOpen(false);
-      setSnackbar({
-        open: true,
-        message: 'Cliente criado com sucesso!',
-        severity: 'success',
-      });
-    },
-    onError: () => {
-      setSnackbar({
-        open: true,
-        message: 'Erro ao criar cliente. Tente novamente.',
-        severity: 'error',
-      });
-    },
   });
 
   const updateMutation = useMutation({
@@ -84,10 +64,6 @@ export default function ClientsPage() {
       });
     },
   });
-
-  const handleCreate = (data: ClientSchema) => {
-    createMutation.mutate(data);
-  };
 
   const handleUpdate = (data: ClientSchema) => {
     if (editClient) {
@@ -131,7 +107,7 @@ export default function ClientsPage() {
           <Button
             variant="contained"
             startIcon={<AddIcon />}
-            onClick={() => setIsCreateOpen(true)}
+            onClick={() => router.push('/clients/new')}
             color="primary"
           >
             Novo Cliente
@@ -140,34 +116,6 @@ export default function ClientsPage() {
 
         <ClientTable clients={clients ?? []} onEdit={setEditClient} />
       </Box>
-
-      {/* Modal — Create */}
-      <Modal open={isCreateOpen} onClose={() => setIsCreateOpen(false)}>
-        <Box
-          sx={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: { xs: '95%', md: '80%', lg: '70%' },
-            maxHeight: '90vh',
-            overflowY: 'auto',
-            backgroundColor: 'background.paper',
-            border: '1px solid var(--color-border)',
-            borderRadius: 2,
-            p: 4,
-          }}
-        >
-          <Typography variant="h6" sx={{ mb: 3, fontWeight: 600 }}>
-            Novo Cliente
-          </Typography>
-          <ClientForm
-            onSubmit={handleCreate}
-            onCancel={() => setIsCreateOpen(false)}
-            isLoading={createMutation.isPending}
-          />
-        </Box>
-      </Modal>
 
       {/* Drawer — Edit */}
       <Drawer

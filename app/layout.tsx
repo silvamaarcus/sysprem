@@ -4,6 +4,9 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 
+import MuiThemeProvider from '@/providers/MuiThemeProvider';
+import QueryProvider from '@/providers/QueryProvider';
+
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
@@ -32,7 +35,9 @@ export default function RootLayout({
     >
       <body className="flex min-h-full flex-col">
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          {children}
+          <MuiThemeProvider>
+            <QueryProvider>{children}</QueryProvider>
+          </MuiThemeProvider>
         </AppRouterCacheProvider>
       </body>
     </html>

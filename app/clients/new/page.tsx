@@ -41,7 +41,7 @@ export default function NewClientPage() {
   });
 
   return (
-    <Box>
+    <Box className="border-border bg-card rounded-lg border shadow-sm">
       <Header />
       <Box sx={{ p: 3, maxWidth: 900, mx: 'auto' }}>
         <Typography variant="h5" sx={{ fontWeight: 600, mb: 3 }}>

@@ -18,10 +18,7 @@ export default function Header() {
     <AppBar
       position="static"
       elevation={0}
-      sx={{
-        backgroundColor: 'hsl(250, 26%, 13%)',
-        borderBottom: '1px solid var(--color-border)',
-      }}
+      className="border-border bg-background-dark border-b"
     >
       <Toolbar>
         <Typography

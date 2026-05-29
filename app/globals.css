@@ -4,6 +4,7 @@
 
 @theme {
   --color-background: hsl(250 26% 19%);
+  --color-background-dark: hsl(250, 26%, 13%);
   --color-foreground: hsl(0 0% 95%);
   --color-card: transparent;
   --color-card-foreground: hsl(0 0% 95%);

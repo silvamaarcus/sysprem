@@ -26,42 +26,6 @@ interface ClientFormProps {
   isLoading?: boolean;
 }
 
-const fieldSx = {
-  '& .MuiOutlinedInput-root': {
-    backgroundColor: 'hsl(240, 3.7%, 12%)',
-    color: 'var(--color-foreground)',
-    '& fieldset': { borderColor: 'var(--color-border)' },
-    '&:hover fieldset': { borderColor: 'var(--color-primary)' },
-    '&.Mui-focused fieldset': { borderColor: 'var(--color-primary)' },
-  },
-  '& .MuiInputLabel-root': { color: 'var(--color-muted-foreground)' },
-  '& .MuiInputLabel-root.Mui-focused': { color: 'var(--color-primary)' },
-  '& .MuiFormHelperText-root': { color: 'hsl(0, 62.8%, 60%)' },
-};
-
-const selectSx = {
-  backgroundColor: 'hsl(240, 3.7%, 12%)',
-  color: 'var(--color-foreground)',
-  '& .MuiOutlinedInput-notchedOutline': { borderColor: 'var(--color-border)' },
-  '&:hover .MuiOutlinedInput-notchedOutline': {
-    borderColor: 'var(--color-primary)',
-  },
-  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-    borderColor: 'var(--color-primary)',
-  },
-  '& .MuiSvgIcon-root': { color: 'var(--color-muted-foreground)' },
-};
-
-const sectionLabel = {
-  color: 'text.secondary',
-  mb: 1,
-  mt: 1,
-  fontWeight: 600,
-  fontSize: '0.75rem',
-  textTransform: 'uppercase' as const,
-  letterSpacing: 0.5,
-};
-
 const EMPTY_DEFAULTS: ClientSchema = {
   name: '',
   tradeName: '',
@@ -99,7 +63,9 @@ export default function ClientForm({
       <Grid container spacing={2}>
         {/* ── Dados Principais ── */}
         <Grid size={12}>
-          <Typography sx={sectionLabel}>Dados Principais</Typography>
+          <Typography className="text-muted-foreground mt-1 mb-1 text-xs font-semibold tracking-[0.5px] uppercase">
+            Dados Principais
+          </Typography>
         </Grid>
 
         <Grid size={{ xs: 12, md: 8 }}>
@@ -114,7 +80,6 @@ export default function ClientForm({
                 size="small"
                 error={!!errors.name}
                 helperText={errors.name?.message}
-                sx={fieldSx}
               />
             )}
           />
@@ -126,15 +91,8 @@ export default function ClientForm({
             control={control}
             render={({ field }) => (
               <FormControl fullWidth size="small">
-                <InputLabel
-                  sx={{
-                    color: 'var(--color-muted-foreground)',
-                    '&.Mui-focused': { color: 'var(--color-primary)' },
-                  }}
-                >
-                  Tipo de Pessoa
-                </InputLabel>
-                <Select {...field} label="Tipo de Pessoa" sx={selectSx}>
+                <InputLabel>Tipo de Pessoa</InputLabel>
+                <Select {...field} label="Tipo de Pessoa">
                   <MenuItem value="PJ">Pessoa Jurídica</MenuItem>
                   <MenuItem value="PF">Pessoa Física</MenuItem>
                 </Select>
@@ -159,7 +117,6 @@ export default function ClientForm({
                   field.onChange(applyCpfCnpjMask(e.target.value))
                 }
                 slotProps={{ htmlInput: { maxLength: 18 } }}
-                sx={fieldSx}
               />
             )}
           />
@@ -175,7 +132,6 @@ export default function ClientForm({
                 label="Nome Fantasia"
                 fullWidth
                 size="small"
-                sx={fieldSx}
               />
             )}
           />
@@ -191,7 +147,6 @@ export default function ClientForm({
                 label="Inscrição Estadual"
                 fullWidth
                 size="small"
-                sx={fieldSx}
               />
             )}
           />
@@ -207,7 +162,6 @@ export default function ClientForm({
                 label="Inscrição Municipal"
                 fullWidth
                 size="small"
-                sx={fieldSx}
               />
             )}
           />
@@ -225,7 +179,6 @@ export default function ClientForm({
                 size="small"
                 error={!!errors.website}
                 helperText={errors.website?.message}
-                sx={fieldSx}
               />
             )}
           />
@@ -233,7 +186,9 @@ export default function ClientForm({
 
         {/* ── Informações Financeiras ── */}
         <Grid size={12}>
-          <Typography sx={sectionLabel}>Informações Financeiras</Typography>
+          <Typography className="text-muted-foreground mt-1 mb-1 text-xs font-semibold tracking-[0.5px] uppercase">
+            Informações Financeiras
+          </Typography>
         </Grid>
 
         <Grid size={{ xs: 12, md: 4 }}>
@@ -256,7 +211,6 @@ export default function ClientForm({
                   )
                 }
                 slotProps={{ htmlInput: { min: 0, step: 0.01 } }}
-                sx={fieldSx}
               />
             )}
           />
@@ -282,7 +236,6 @@ export default function ClientForm({
                   )
                 }
                 slotProps={{ htmlInput: { step: 0.01 } }}
-                sx={fieldSx}
               />
             )}
           />
@@ -300,7 +253,6 @@ export default function ClientForm({
                 size="small"
                 type="date"
                 slotProps={{ inputLabel: { shrink: true } }}
-                sx={fieldSx}
               />
             )}
           />
@@ -308,7 +260,9 @@ export default function ClientForm({
 
         {/* ── Observações ── */}
         <Grid size={12}>
-          <Typography sx={sectionLabel}>Observações</Typography>
+          <Typography className="text-muted-foreground mt-1 mb-1 text-xs font-semibold tracking-[0.5px] uppercase">
+            Observações
+          </Typography>
         </Grid>
 
         <Grid size={12}>
@@ -323,7 +277,6 @@ export default function ClientForm({
                 size="small"
                 multiline
                 rows={3}
-                sx={fieldSx}
               />
             )}
           />
@@ -341,7 +294,6 @@ export default function ClientForm({
                 size="small"
                 multiline
                 rows={3}
-                sx={fieldSx}
               />
             )}
           />

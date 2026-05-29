@@ -20,6 +20,48 @@ const darkTheme = createTheme({
     divider: 'hsl(240, 3.7%, 15.9%)',
   },
   components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'hsl(240, 3.7%, 12%)',
+          '& .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'hsl(240, 3.7%, 15.9%)',
+          },
+          '&:hover:not(.Mui-disabled) .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'hsl(181, 39%, 55%)',
+          },
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'hsl(181, 39%, 55%)',
+          },
+        },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          color: 'hsl(240, 5%, 64.9%)',
+          '&.Mui-focused': {
+            color: 'hsl(181, 39%, 55%)',
+          },
+        },
+      },
+    },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: {
+          '&.Mui-error': {
+            color: 'hsl(0, 62.8%, 60%)',
+          },
+        },
+      },
+    },
+    MuiSelect: {
+      styleOverrides: {
+        icon: {
+          color: 'hsl(240, 5%, 64.9%)',
+        },
+      },
+    },
     MuiTableCell: {
       styleOverrides: {
         root: {

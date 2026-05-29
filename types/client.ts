@@ -1,22 +1,41 @@
 export type PersonType = 'PF' | 'PJ';
 
 export interface Client {
-  id: string | number;
+  id: string;
+  publicId?: string;
+  salesId?: string | null;
   name: string;
-  fantasy_name?: string;
-  person_type: PersonType;
-  cpf_cnpj: string;
-  state_registration?: string;
-  municipal_registration?: string;
+  tradeName?: string;
+  personType: PersonType;
+  federalTaxNumber: string;
+  stateRegistration?: string;
+  municipalRegistration?: string;
   website?: string;
-  credit_limit?: number;
-  financial_balance?: number;
-  credit_limit_expiry?: string;
-  credit_notes?: string;
-  general_notes?: string;
-  active: boolean;
-  created_at?: string;
-  updated_at?: string;
+  creditLimit?: number;
+  financialBalance?: number;
+  creditLimitExpirationDate?: string;
+  creditRegistrationNotes?: string;
+  notes?: string;
+  isActive: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+  deletedAt?: string | null;
+  deletedBy?: string | null;
+  group?: unknown | null;
+  addresses?: unknown[];
+  contacts?: unknown[];
 }
 
-export type ClientFormData = Omit<Client, 'id' | 'created_at' | 'updated_at'>;
+export type ClientFormData = Omit<
+  Client,
+  | 'id'
+  | 'publicId'
+  | 'salesId'
+  | 'createdAt'
+  | 'updatedAt'
+  | 'deletedAt'
+  | 'deletedBy'
+  | 'group'
+  | 'addresses'
+  | 'contacts'
+>;

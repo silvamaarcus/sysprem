@@ -36,10 +36,9 @@ export default function Header() {
           Sysprem
         </Typography>
         <Button
-          color="inherit"
           onClick={handleLogout}
           size="small"
-          sx={{ color: 'text.secondary', '&:hover': { color: 'text.primary' } }}
+          className="border border-red-500 text-red-500 hover:bg-red-500/20"
         >
           Sair
         </Button>

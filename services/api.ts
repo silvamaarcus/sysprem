@@ -1,7 +1,10 @@
 import axios from 'axios';
 
 export const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  baseURL:
+    typeof window === 'undefined'
+      ? process.env.NEXT_PUBLIC_API_URL // servidor: chama a API diretamente
+      : '/api', // browser: passa pelo proxy Next.js (sem CORS)
 });
 
 api.interceptors.request.use((config) => {

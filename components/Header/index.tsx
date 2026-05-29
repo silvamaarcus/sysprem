@@ -23,12 +23,7 @@ export default function Header() {
       <Toolbar>
         <Typography
           variant="h6"
-          sx={{
-            flexGrow: 1,
-            color: 'primary.main',
-            fontWeight: 700,
-            letterSpacing: 1,
-          }}
+          className="text-primary flex-1 font-bold tracking-wide"
         >
           Sysprem
         </Typography>

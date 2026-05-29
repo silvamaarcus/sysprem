@@ -25,7 +25,7 @@ export const updateClient = async (
   id: string | number,
   client: Partial<ClientFormData>,
 ): Promise<Client> => {
-  const { data } = await api.put<Client>(
+  const { data } = await api.patch<Client>(
     `/clients/${id}`,
     sanitizePayload(client),
   );

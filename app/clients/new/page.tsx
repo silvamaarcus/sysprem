@@ -43,9 +43,12 @@ export default function NewClientPage() {
   });
 
   return (
-    <Box className="border-border bg-card rounded-lg border shadow-sm">
+    <Box>
       <Header />
-      <Box sx={{ p: 3, maxWidth: 900, mx: 'auto' }}>
+      <Box
+        sx={{ p: 3, maxWidth: 900, mx: 'auto' }}
+        className="bg-background-light border-muted-foreground/50 my-6 rounded-2xl border"
+      >
         <Typography variant="h5" sx={{ fontWeight: 600, mb: 3 }}>
           Novo Cliente
         </Typography>

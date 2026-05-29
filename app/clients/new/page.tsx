@@ -4,7 +4,7 @@ import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import Snackbar from '@mui/material/Snackbar';
 import Typography from '@mui/material/Typography';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -15,6 +15,7 @@ import { createClient } from '@/services/clients';
 
 export default function NewClientPage() {
   const router = useRouter();
+  const queryClient = useQueryClient();
   const [snackbar, setSnackbar] = useState<{
     open: boolean;
     message: string;
@@ -24,6 +25,7 @@ export default function NewClientPage() {
   const mutation = useMutation({
     mutationFn: createClient,
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['clients'] });
       setSnackbar({
         open: true,
         message: 'Cliente criado com sucesso!',

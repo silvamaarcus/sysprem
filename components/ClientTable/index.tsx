@@ -70,25 +70,25 @@ export default function ClientTable({ clients, onEdit }: ClientTableProps) {
                   <Typography variant="body2" sx={{ fontWeight: 500 }}>
                     {client.name}
                   </Typography>
-                  {client.fantasy_name && (
+                  {client.tradeName && (
                     <Typography
                       variant="caption"
                       sx={{ color: 'text.secondary' }}
                     >
-                      {client.fantasy_name}
+                      {client.tradeName}
                     </Typography>
                   )}
                 </TableCell>
                 <TableCell>
                   <Typography variant="body2" sx={{ fontFamily: 'monospace' }}>
-                    {formatCpfCnpj(client.cpf_cnpj)}
+                    {formatCpfCnpj(client.federalTaxNumber)}
                   </Typography>
                 </TableCell>
                 <TableCell>
                   <Chip
-                    label={client.active ? 'Ativo' : 'Inativo'}
+                    label={client.isActive ? 'Ativo' : 'Inativo'}
                     size="small"
-                    color={client.active ? 'success' : 'default'}
+                    color={client.isActive ? 'success' : 'default'}
                     variant="outlined"
                   />
                 </TableCell>

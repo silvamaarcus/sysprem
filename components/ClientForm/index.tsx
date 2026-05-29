@@ -64,18 +64,18 @@ const sectionLabel = {
 
 const EMPTY_DEFAULTS: ClientSchema = {
   name: '',
-  fantasy_name: '',
-  person_type: 'PJ',
-  cpf_cnpj: '',
-  state_registration: '',
-  municipal_registration: '',
+  tradeName: '',
+  personType: 'PJ',
+  federalTaxNumber: '',
+  stateRegistration: '',
+  municipalRegistration: '',
   website: '',
-  credit_limit: undefined,
-  financial_balance: undefined,
-  credit_limit_expiry: '',
-  credit_notes: '',
-  general_notes: '',
-  active: true,
+  creditLimit: undefined,
+  financialBalance: undefined,
+  creditLimitExpirationDate: '',
+  creditRegistrationNotes: '',
+  notes: '',
+  isActive: true,
 };
 
 export default function ClientForm({
@@ -122,7 +122,7 @@ export default function ClientForm({
 
         <Grid size={{ xs: 12, md: 4 }}>
           <Controller
-            name="person_type"
+            name="personType"
             control={control}
             render={({ field }) => (
               <FormControl fullWidth size="small">
@@ -145,7 +145,7 @@ export default function ClientForm({
 
         <Grid size={{ xs: 12, md: 6 }}>
           <Controller
-            name="cpf_cnpj"
+            name="federalTaxNumber"
             control={control}
             render={({ field }) => (
               <TextField
@@ -153,8 +153,8 @@ export default function ClientForm({
                 label="CPF / CNPJ *"
                 fullWidth
                 size="small"
-                error={!!errors.cpf_cnpj}
-                helperText={errors.cpf_cnpj?.message}
+                error={!!errors.federalTaxNumber}
+                helperText={errors.federalTaxNumber?.message}
                 onChange={(e) =>
                   field.onChange(applyCpfCnpjMask(e.target.value))
                 }
@@ -167,7 +167,7 @@ export default function ClientForm({
 
         <Grid size={{ xs: 12, md: 6 }}>
           <Controller
-            name="fantasy_name"
+            name="tradeName"
             control={control}
             render={({ field }) => (
               <TextField
@@ -183,7 +183,7 @@ export default function ClientForm({
 
         <Grid size={{ xs: 12, md: 6 }}>
           <Controller
-            name="state_registration"
+            name="stateRegistration"
             control={control}
             render={({ field }) => (
               <TextField
@@ -199,7 +199,7 @@ export default function ClientForm({
 
         <Grid size={{ xs: 12, md: 6 }}>
           <Controller
-            name="municipal_registration"
+            name="municipalRegistration"
             control={control}
             render={({ field }) => (
               <TextField
@@ -238,7 +238,7 @@ export default function ClientForm({
 
         <Grid size={{ xs: 12, md: 4 }}>
           <Controller
-            name="credit_limit"
+            name="creditLimit"
             control={control}
             render={({ field }) => (
               <TextField
@@ -264,7 +264,7 @@ export default function ClientForm({
 
         <Grid size={{ xs: 12, md: 4 }}>
           <Controller
-            name="financial_balance"
+            name="financialBalance"
             control={control}
             render={({ field }) => (
               <TextField
@@ -290,7 +290,7 @@ export default function ClientForm({
 
         <Grid size={{ xs: 12, md: 4 }}>
           <Controller
-            name="credit_limit_expiry"
+            name="creditLimitExpirationDate"
             control={control}
             render={({ field }) => (
               <TextField
@@ -313,7 +313,7 @@ export default function ClientForm({
 
         <Grid size={12}>
           <Controller
-            name="credit_notes"
+            name="creditRegistrationNotes"
             control={control}
             render={({ field }) => (
               <TextField
@@ -331,7 +331,7 @@ export default function ClientForm({
 
         <Grid size={12}>
           <Controller
-            name="general_notes"
+            name="notes"
             control={control}
             render={({ field }) => (
               <TextField
@@ -350,7 +350,7 @@ export default function ClientForm({
         {/* ── Status ── */}
         <Grid size={12}>
           <Controller
-            name="active"
+            name="isActive"
             control={control}
             render={({ field }) => (
               <FormControlLabel

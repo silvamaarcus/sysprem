@@ -16,6 +16,11 @@ export const getClients = async (): Promise<Client[]> => {
   return data;
 };
 
+export const getClientById = async (id: string | number): Promise<Client> => {
+  const { data } = await api.get<Client>(`/clients/${id}`);
+  return data;
+};
+
 export const createClient = async (client: ClientFormData): Promise<Client> => {
   const { data } = await api.post<Client>('/clients', sanitizePayload(client));
   return data;

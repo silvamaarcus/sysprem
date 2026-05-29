@@ -12,7 +12,7 @@ import ClientForm from '@/components/ClientForm';
 import Header from '@/components/Header';
 import Loading from '@/components/Loading';
 import { type ClientSchema } from '@/schemas/clientSchema';
-import { getClients, updateClient } from '@/services/clients';
+import { getClientById, updateClient } from '@/services/clients';
 
 export default function EditClientPage() {
   const router = useRouter();
@@ -27,15 +27,13 @@ export default function EditClientPage() {
   }>({ open: false, message: '', severity: 'success' });
 
   const {
-    data: clients,
+    data: client,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ['clients'],
-    queryFn: getClients,
+    queryKey: ['clients', id],
+    queryFn: () => getClientById(id),
   });
-
-  const client = clients?.find((c) => String(c.id) === id);
 
   const mutation = useMutation({
     mutationFn: (data: Partial<ClientSchema>) => updateClient(id, data),
